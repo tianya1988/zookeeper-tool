@@ -28,11 +28,6 @@ public class ZkCfgManagerImpl implements ZkCfgManager {
     private static Connection conn = null;
     static QueryRunner run = new QueryRunner(H2Util.getDataSource());
 
-    public static void main(String[] args) {
-        List<Map<String, Object>> query = new ZkCfgManagerImpl().query();
-        System.out.println(query);
-    }
-
     public ZkCfgManagerImpl() {
         cp.setMaxConnections(20);
         cp.setLoginTimeout(1000 * 50);
