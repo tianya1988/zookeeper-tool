@@ -23,17 +23,22 @@ public class ZkCfgManagerImpl implements ZkCfgManager {
 //	jdbc:h2:tcp://localhost/~/test
 
     // 指定JDBC串
-    private static JdbcConnectionPool cp = JdbcConnectionPool.create("jdbc:h2:~/xcc", "sa", "sa");
+    private static JdbcConnectionPool cp = JdbcConnectionPool.create("jdbc:h2:~/xcc2", "sa", "sa");
     //	private static JdbcConnectionPool cp = JdbcConnectionPool.create("jdbc:h2:tcp://127.0.0.1/~/zkcfg","sa","sa");
     private static Connection conn = null;
     static QueryRunner run = new QueryRunner(H2Util.getDataSource());
+
+    public static void main(String[] args) {
+        List<Map<String, Object>> query = new ZkCfgManagerImpl().query();
+        System.out.println(query);
+
+    }
+
 
     public ZkCfgManagerImpl() {
         cp.setMaxConnections(20);
         cp.setLoginTimeout(1000 * 50);
     }
-
-    ;
 
     private Connection getConnection() throws SQLException {
         if (null == conn) {
